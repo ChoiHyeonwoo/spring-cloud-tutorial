@@ -1,0 +1,15 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: my-zuul-service
+#zuul을 이용한 routes service (spring 2.4 부터 사용중지 상태)
+zuul:
+  routes:
+    first-service:
+      path: /first-service/**
+      url: http://localhost:8081
+    second-service:
+      path: /second-service/**
+      url: http://localhost:8082
+

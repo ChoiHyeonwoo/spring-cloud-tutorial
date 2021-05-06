@@ -14,15 +14,15 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: first-service
+        - id: user-service
 #          uri: http://localhost:8081/first-service/**
-          uri: lb://MY-FIRST-SERVICE  # eureka server에 등록된 정보로 변경
+          uri: lb://USER-SERVICE  # eureka server에 등록된 정보로 변경
           predicates:
-            - Path=/first-service/**
+            - Path=/user-service/**
           filters:
 #            - AddRequestHeader=first-request, first-request-header2
 #            - AddResponseHeader=first-response, first-response-header2
-            - CustomFilter
+#            - CustomFilter
         - id: second-service
 #          uri: http://localhost:8082/second-service/**
           uri: lb://MY-SECOND-SERVICE # eureka server에 등록된 정보로 변경

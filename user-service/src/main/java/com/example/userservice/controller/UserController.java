@@ -8,14 +8,17 @@ import com.example.userservice.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user-service")
 @RequiredArgsConstructor
 public class UserController {
+
+    private final Environment environment;
 
     private final Greeting greeting;
 
@@ -23,7 +26,8 @@ public class UserController {
 
     @GetMapping("/health_check")
     public String status(){
-        return "It's Working at User Service";
+        return String.format("It's Working at User Service on PORT %S",
+                environment.getProperty("local.server.port"));
     }
 
     @GetMapping("/welcome")
